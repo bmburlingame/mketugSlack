@@ -1,4 +1,3 @@
 tweepy
-calendar
 requests
 json
