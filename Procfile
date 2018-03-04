@@ -1,2 +1,2 @@
-worker: twitter-slackbot-run.py
+worker: python twitter-slackbot-run.py
 
