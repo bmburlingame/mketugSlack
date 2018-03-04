@@ -3,7 +3,7 @@ A set of workers to post information in a slack channel
 
 Clone this repo and run:
  
-    ```$ pip install -r requirements.txt```
+    $ pip install -r requirements.txt
 
 ###Twitter Listener
 Live listening to twitter to pull tweets from different users or contain certain hastags/keywords
