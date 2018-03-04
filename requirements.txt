@@ -1,2 +1,3 @@
 tweepy
 requests
+dotenv==0.0.5
