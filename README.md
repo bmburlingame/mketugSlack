@@ -5,7 +5,7 @@ Clone this repo and run:
  
     $ pip install -r requirements.txt
 
-###Twitter Listener
+### Twitter Listener
 Live listening to twitter to pull tweets from different users or contain certain hastags/keywords
 
 To implement:
@@ -26,7 +26,7 @@ To implement:
     ```
 6. To change who/what you [listen for on twitter], edit the TWITTER.LISTENING variable in the [constants.py]
 
-###Changes/updates coming
+### Changes/updates coming
 - Set up ability to store tweets in a postgres database
 - Set up slash command to retrieve tweets from database
 - More cool stuff
