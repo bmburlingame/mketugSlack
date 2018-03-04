@@ -96,7 +96,7 @@ class TwitterListener(StreamListener):
         # Post in slack channel
         self.post_in_slack(cleaned_data)
 
-        return False
+        return True
 
     def on_error(self, status):
         print status
