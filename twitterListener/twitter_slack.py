@@ -69,7 +69,7 @@ class TwitterListener(StreamListener):
                     "text": tweet_text,
                     "fields": [replying_payload],
                     "footer": TUG_HASHTAG.upper() + " Twitter API",
-                    "footer_icon": "https://yt3.ggpht.com/a-/AJLlDp3qx91Z4QkUvGvBPJAB4aCTFdtU7ZPG_WidFA=s900-mo-c-c0xffffffff-rj-k-no",
+                    "footer_icon": SLACK.FOOTER_IMAGE_URL,
                     "ts": calendar.timegm(time.gmtime())
                 }]
         }
@@ -90,11 +90,14 @@ class TwitterListener(StreamListener):
         if data['lang'] != 'en' or 'RT @' in data['text']:
             return True
 
-        # Clean and parse data
-        cleaned_data = self.parse_tweet(data)
+        try:
+            # Clean and parse data and format slack message
+            slack_message = self.parse_tweet(data)
 
-        # Post in slack channel
-        self.post_in_slack(cleaned_data)
+            # Post in slack channel
+            self.post_in_slack(slack_message)
+        except:
+            pass
 
         return True
 
