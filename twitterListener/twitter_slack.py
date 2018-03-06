@@ -50,6 +50,7 @@ class TwitterListener(StreamListener):
                 "title": "Replying to: " + replying_to_url,
                 "short": False
             }
+            return 0
         except:
             replying_payload = {}
 
@@ -93,6 +94,9 @@ class TwitterListener(StreamListener):
         try:
             # Clean and parse data and format slack message
             slack_message = self.parse_tweet(data)
+
+            if slack_message == 0:
+                return True
 
             # Post in slack channel
             self.post_in_slack(slack_message)
