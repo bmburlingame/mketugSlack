@@ -6,9 +6,13 @@ import requests
 import time
 import calendar
 from constants import *
+import tweepy
 
 # This is a basic listener that just prints received tweets to stdout.
 class TwitterListener(StreamListener):
+
+    def __init__(self, auth):
+        self.auth = auth
 
     def slack_color(self, twitter_handle, hashtags):
         """Get the color for the slack channel"""
@@ -24,6 +28,11 @@ class TwitterListener(StreamListener):
 
         # If not authored by tableau or a hashtag for mketug, return black
         return '#101E10'
+
+    def get_twitter_userid(self, screen_name):
+        api = tweepy.API(self.auth)
+        user = api.get_user(screen_name=screen_name)
+        return user.id
 
     def parse_tweet(self, df):
         """Parse the tweet to obtain information for slack post"""
@@ -50,9 +59,14 @@ class TwitterListener(StreamListener):
                 "title": "Replying to: " + replying_to_url,
                 "short": False
             }
-            return 0
+            replying = True
         except:
             replying_payload = {}
+            replying = False
+
+        # If a reply is not from a user in TWITTER.USER_IDS then dont send
+        if self.get_twitter_userid(original_twitter_handle) not in TWITTER.USER_IDS and replying:
+            return 0
 
         # Get color for slack channel
         color = self.slack_color(original_twitter_handle, hashtags)

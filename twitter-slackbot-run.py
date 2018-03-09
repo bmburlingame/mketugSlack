@@ -6,5 +6,5 @@ from tweepy import Stream
 auth = OAuthHandler(TWITTER.CONSUMER_KEY, TWITTER.CONSUMER_SECRET)
 auth.set_access_token(TWITTER.ACCESS_TOKEN, TWITTER.ACCESS_TOKEN_SECRET)
 
-twitterStream = Stream(auth, TwitterListener())
+twitterStream = Stream(auth, TwitterListener(auth))
 twitterStream.filter(track=TWITTER.LISTENING, follow=TWITTER.USER_IDS)
