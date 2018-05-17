@@ -32,4 +32,4 @@ class TWITTER:
 class SLACK:
     WEBHOOK_URL = os.environ['WEBHOOK_URL']
     FOOTER_IMAGE_URL = "https://yt3.ggpht.com/a-/AJLlDp3qx91Z4QkUvGvBPJAB4aCTFdtU7ZPG_WidFA=s900-mo-c-c0xffffffff-rj-k-no"
-    SLACK_API_TOKEN = 'e2qnNvnRBdxM1ccKVp1yGP9B'
+    SLACK_API_TOKEN = 'SLACK_API_TOKEN'
