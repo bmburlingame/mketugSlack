@@ -2,19 +2,20 @@ from constants import *
 from flask import Flask, request, jsonify, abort
 app = Flask(__name__)
 
-@app.route("/storypoints")
 
-def StoryPoints():
+def is_request_valid(request):
+    is_token_valid = request.form['token'] == SLACK.SLACK_API_TOKEN
+    is_team_id_valid = request.form['team_id'] == SLACK.SLACK_TEAM_ID
 
-    data = {'thing': 'Hello', 'other_thing': 'World!'}
+    return is_token_valid and is_team_id_valid
 
-    token = request.form.get('token', SLACK.SLACK_API_TOKEN)  # TODO: validate the token
-    command = request.form.get('command', None)
-    text = request.form.get('text', None)
 
-    # Validate the request parameters
-    if not token:  # or some other failure condition
+@app.route('/storypoints', methods=['POST'])
+def storypoints():
+    if not is_request_valid(request):
         abort(400)
 
-
-    return "Well hey there!!!!"
+    return jsonify(
+        response_type='in_channel',
+        text='HI',
+    )
