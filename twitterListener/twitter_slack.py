@@ -64,12 +64,12 @@ class TwitterListener(StreamListener):
             replying_payload = {}
             replying = False
 
+        # Get color for slack channel
+        color = self.slack_color(original_twitter_handle, hashtags)
+
         # If a reply is not from a user in TWITTER.USER_IDS then dont send
         if self.get_twitter_userid(original_twitter_handle) not in TWITTER.USER_IDS and replying:
             return 0
-
-        # Get color for slack channel
-        color = self.slack_color(original_twitter_handle, hashtags)
 
         # Compile message for slack
         slack_data = {"attachments": [
