@@ -1,2 +1,2 @@
 worker: python twitter-slackbot-run.py
-web: run-program gunicorn mketugSlack.slackbots.story_points:app
+web: run-program gunicorn slackbots.story_points:app
