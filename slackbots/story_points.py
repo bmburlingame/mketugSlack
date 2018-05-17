@@ -2,7 +2,7 @@ from constants import *
 from flask import Flask, request, jsonify, abort
 app = Flask(__name__)
 
-@app.route("/storypoints", methods=['POST'])
+@app.route("/storypoints")
 
 def StoryPoints():
 
